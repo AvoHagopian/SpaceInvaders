@@ -45,68 +45,68 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x00: break;
         case 0x01: printf("LXI/tB,#$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair BC
         case 0x02: printf("STAX/tB");   break;//store value in register A at address in register pair BC
-        case 0x03: break;
-        case 0x04: break;
-        case 0x05: break;
+        case 0x03: printf("INX/tB");    break;//increment register pair BC NO FLAG SET
+        case 0x04: printf("INR/tB");    break;//increment register B by 1 CARRY FLAG NOT SET
+        case 0x05: printf("DCR/tB");    break;//decrement register B by 1 CARRY FLAG NOT SET
         case 0x06: printf("MVI/tB,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register B
         case 0x07: break;
         case 0x08: break;
-        case 0x09: break;
+        case 0x09: printf("DAD/tB");    break;//add register pair BC to register pair HL ONLY CARRY FLAG IS SET OUT OF DOUBLE PRECISION ADD OTHERWISE RESET
         case 0x0a: printf("LDAX/tB");   break;//load value at address in register pair BC to register A
-        case 0x0b: break;
-        case 0x0c: break;
-        case 0x0d: break;
+        case 0x0b: printf("DCX/tB");    break;//decrement register pair BC NO FLAG SET
+        case 0x0c: printf("INR/tC");    break;//increment register C by 1 CARRY FLAG NOT SET
+        case 0x0d: printf("DCR/tC");    break;//decrement register C by 1 CARRY FLAG NOT SET
         case 0x0e: printf("MVI/tC,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register C
         case 0x0f: break;
 
         case 0x10: break;
         case 0x11: printf("LXI/tD,#$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair DE
         case 0x12: printf("STAX/tD");   break;//store value in register A at address in register pair DE
-        case 0x13: break;
-        case 0x14: break;
-        case 0x15: break;
+        case 0x13: printf("INX/tD");    break;//increment register pair DE NO FLAG SET
+        case 0x14: printf("INR/tD");    break;//increment register D by 1 CARRY FLAG NOT SET
+        case 0x15: printf("DCR/tD");    break;//decrement register D by 1 CARRY FLAG NOT SET
         case 0x16: printf("MVI/tD,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register D
         case 0x17: break;
         case 0x18: break;
-        case 0x19: break;
+        case 0x19: printf("DAD/tD");    break;//add register pair DE to register pair HL ONLY CARRY FLAG IS SET OUT OF DOUBLE PRECISION ADD OTHERWISE RESET
         case 0x1a: printf("LDAX/tD");   break;//load value at address in register pair DE to register A
-        case 0x1b: break;
-        case 0x1c: break;
-        case 0x1d: break;
+        case 0x1b: printf("DCX/tD");    break;//decrement register pair DE NO FLAG SET
+        case 0x1c: printf("INR/tE");    break;//increment register E by 1 CARRY FLAG NOT SET
+        case 0x1d: printf("DCR/tE");    break;//decrement register E by 1 CARRY FLAG NOT SET
         case 0x1e: printf("MVI/tE,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register E
         case 0x1f: break;
 
         case 0x20: break;
         case 0x21: printf("LXI/tH,#$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair HL
         case 0x22: printf("SHLD/t$%20x%20x", code[2], code[1]); opbytes = 3;    break;//store value of register L at address and value of register H at address + 1
-        case 0x23: break;
-        case 0x24: break;
-        case 0x25: break;
+        case 0x23: printf("INX/tH");    break;//increment register pair HL NO FLAG SET
+        case 0x24: printf("INR/tH");    break;//increment register H by 1 CARRY FLAG NOT SET
+        case 0x25: printf("DCR/tH");    break;//decrement register H by 1 CARRY FLAG NOT SET
         case 0x26: printf("MVI/tH,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register H
-        case 0x27: break;
+        case 0x27: printf("DAA");   break;//adjust accumulator to form 2 four bit binary coded decimal digits
         case 0x28: break;
-        case 0x29: break;
+        case 0x29: printf("DAD/tH");    break;//add register pair HL to register pair HL ONLY CARRY FLAG IS SET OUT OF DOUBLE PRECISION ADD OTHERWISE RESET
         case 0x2a: printf("LHLD/t$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load value at address to register L and value at address + 1 to register H
-        case 0x2b: break;
-        case 0x2c: break;
-        case 0x2d: break;
+        case 0x2b: printf("DCX/tH");    break;//decrement register pair HL NO FLAG SET
+        case 0x2c: printf("INR/tL");    break;//increment register L by 1 CARRY FLAG NOT SET
+        case 0x2d: printf("DCR/tL");    break;//decrement register L by 1 CARRY FLAG NOT SET
         case 0x2e: printf("MVI/tL,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register L
         case 0x2f: break;
 
         case 0x30: break;
-        case 0x31: printf("LXI/tB,#$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair SP (Stack pointer)
+        case 0x31: printf("LXI/tSP,#$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair SP (Stack pointer)
         case 0x32: printf("STA/t$%20x20x", code[2], code[1]);   opbytes = 3;    break;//store value in register A at address
-        case 0x33: break;
-        case 0x34: break;
-        case 0x35: break;
+        case 0x33: printf("INX/tSP");   break;//increment register pair SP (Stack pointer) NO FLAG SET
+        case 0x34: printf("INR/tM");    break;//increment memory location (H)(L) by 1 CARRY FLAG NOT SET
+        case 0x35: printf("DCR/tM");    break;//decrement memory location (H)(L) by 1 CARRY FLAG NOT SET
         case 0x36: printf("MVI/tM,#$%02x", code[1]);  opbytes = 2;    break;//move data value to memory location (H)(L)
         case 0x37: break;
         case 0x38: break;
-        case 0x39: break;
+        case 0x39: printf("DAD/tSP");   break;//add register pair SP (Stack poiinter) to register pair HL ONLY CARRY FLAG IS SET OUT OF DOUBLE PRECISION ADD OTHERWISE RESET
         case 0x3a: printf("LDA/t$%20x%20x", code[2], code[1]);  opbytes = 3;    break;//load value at address to register A
-        case 0x3b: break;
-        case 0x3c: break;
-        case 0x3d: break;
+        case 0x3b: printf("DCX/tSP");   break;//decrement register pair BSP(Stack pointer) NO FLAG SET
+        case 0x3c: printf("INR/tA");    break;//increment register A by 1 CARRY FLAG NOT SET
+        case 0x3d: printf("DCR/tA");    break;//decrement register A by 1 CARRY FLAG NOT SET
         case 0x3e: printf("MVI/tA,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register A
         case 0x3f: break;
 
@@ -178,39 +178,39 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x7e: printf("MOV/tA,M");    break; //move memory location (H)(L) to register A
         case 0x7f: printf("MOV/tA,A");    break; //move register A to register A
 
-        case 0x80: printf("ADD/tB");    break;//add contents of register B to register A
-        case 0x81: printf("ADD/tC");    break;//add contents of register C to register A
-        case 0x82: printf("ADD/tD");    break;//add contents of register D to register A
-        case 0x83: printf("ADD/tE");    break;//add contents of register E to register A
-        case 0x84: printf("ADD/tH");    break;//add contents of register H to register A
-        case 0x85: printf("ADD/tL");    break;//add contents of register L to register A
-        case 0x86: printf("ADD/tM");    break;//add contents of memory location at (H)(L) to register A
-        case 0x87: printf("ADD/tA");    break;//add contents of register A to register A
-        case 0x88: printf("ADC/tB");    break;//add contents of register B and carry bit to register A
-        case 0x89: printf("ADC/tC");    break;//add contents of register C and carry bit to register A
-        case 0x8a: printf("ADC/tD");    break;//add contents of register D and carry bit to register A
-        case 0x8b: printf("ADC/tE");    break;//add contents of register E and carry bit to register A
-        case 0x8c: printf("ADC/tH");    break;//add contents of register H and carry bit to register A
-        case 0x8d: printf("ADC/tL");    break;//add contents of register L and carry bit to register A
-        case 0x8e: printf("ADC/tM");    break;//add contents of memory location (H)(L) and carry bit to register A
-        case 0x8f: printf("ADC/tA");    break;//add contents of register A and carry bit to register A
+        case 0x80: printf("ADD/tB");    break;//add register B to register A
+        case 0x81: printf("ADD/tC");    break;//add register C to register A
+        case 0x82: printf("ADD/tD");    break;//add register D to register A
+        case 0x83: printf("ADD/tE");    break;//add register E to register A
+        case 0x84: printf("ADD/tH");    break;//add register H to register A
+        case 0x85: printf("ADD/tL");    break;//add register L to register A
+        case 0x86: printf("ADD/tM");    break;//add memory location at (H)(L) to register A
+        case 0x87: printf("ADD/tA");    break;//add register A to register A
+        case 0x88: printf("ADC/tB");    break;//add register B and carry bit to register A
+        case 0x89: printf("ADC/tC");    break;//add register C and carry bit to register A
+        case 0x8a: printf("ADC/tD");    break;//add register D and carry bit to register A
+        case 0x8b: printf("ADC/tE");    break;//add register E and carry bit to register A
+        case 0x8c: printf("ADC/tH");    break;//add register H and carry bit to register A
+        case 0x8d: printf("ADC/tL");    break;//add register L and carry bit to register A
+        case 0x8e: printf("ADC/tM");    break;//add memory location (H)(L) and carry bit to register A
+        case 0x8f: printf("ADC/tA");    break;//add register A and carry bit to register A
 
-        case 0x90: break;
-        case 0x91: break;
-        case 0x92: break;
-        case 0x93: break;
-        case 0x94: break;
-        case 0x95: break;
-        case 0x96: break;
-        case 0x97: break;
-        case 0x98: break;
-        case 0x99: break;
-        case 0x9a: break;
-        case 0x9b: break;
-        case 0x9c: break;
-        case 0x9d: break;
-        case 0x9e: break;
-        case 0x9f: break;
+        case 0x90: printf("SUB/tB");    break;//subtract register B from register A
+        case 0x91: printf("SUB/tC");    break;//subtract register C from register A
+        case 0x92: printf("SUB/tD");    break;//subtract register D from register A
+        case 0x93: printf("SUB/tE");    break;//subtract register E from register A
+        case 0x94: printf("SUB/tH");    break;//subtract register H from register A
+        case 0x95: printf("SUB/tL");    break;//subtract register L from register A
+        case 0x96: printf("SUB/tM");    break;//subtract memory location (H)(L) from register A
+        case 0x97: printf("SUB/tA");    break;//subtract register A from register A
+        case 0x98: printf("SBB/tB");    break;//subtract register B and carry bit from register A
+        case 0x99: printf("SBB/tC");    break;//subtract register C and carry bit from register A
+        case 0x9a: printf("SBB/tD");    break;//subtract register D and carry bit from register A
+        case 0x9b: printf("SBB/tE");    break;//subtract register E and carry bit from register A
+        case 0x9c: printf("SBB/tH");    break;//subtract register H and carry bit from register A
+        case 0x9d: printf("SBB/tL");    break;//subtract register L and carry bit from register A
+        case 0x9e: printf("SBB/tM");    break;//subtract memory location (H)(L) and carry bit from register A
+        case 0x9f: printf("SBB/tA");    break;//subtract register A and carry bit from register A
 
         case 0xa0: break;
         case 0xa1: break;
@@ -269,7 +269,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0xd3: break;
         case 0xd4: break;
         case 0xd5: break;
-        case 0xd6: break;
+        case 0xd6: printf("SUI/t#$%20x", code[1]);  opbytes = 2;    break;//subtract data value from register A
         case 0xd7: break;
         case 0xd8: break;
         case 0xd9: break;
@@ -277,7 +277,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0xdb: break;
         case 0xdc: break;
         case 0xdd: break;
-        case 0xde: break;
+        case 0xde: printf("SBI/t#$%20x", code[1]);  opbytes = 2;    break;//subtract data value and carry bit from register A
         case 0xdf: break;
 
         case 0xe0: break;
