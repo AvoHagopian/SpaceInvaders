@@ -43,8 +43,8 @@ int Disassemble8080Op(char* characterBuffer, int pc)
     switch(*code)
     {
         case 0x00: break;
-        case 0x01: printf("LXI/tB,$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair BC
-        case 0x02: break;
+        case 0x01: printf("LXI/tB,#$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair BC
+        case 0x02: printf("STAX/tB");   break;//store value in register A at address in register pair BC
         case 0x03: break;
         case 0x04: break;
         case 0x05: break;
@@ -52,7 +52,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x07: break;
         case 0x08: break;
         case 0x09: break;
-        case 0x0a: break;
+        case 0x0a: printf("LDAX/tB");   break;//load value at address in register pair BC to register A
         case 0x0b: break;
         case 0x0c: break;
         case 0x0d: break;
@@ -60,8 +60,8 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x0f: break;
 
         case 0x10: break;
-        case 0x11: printf("LXI/tD,$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair DE
-        case 0x12: break;
+        case 0x11: printf("LXI/tD,#$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair DE
+        case 0x12: printf("STAX/tD");   break;//store value in register A at address in register pair DE
         case 0x13: break;
         case 0x14: break;
         case 0x15: break;
@@ -69,7 +69,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x17: break;
         case 0x18: break;
         case 0x19: break;
-        case 0x1a: break;
+        case 0x1a: printf("LDAX/tD");   break;//load value at address in register pair DE to register A
         case 0x1b: break;
         case 0x1c: break;
         case 0x1d: break;
@@ -77,8 +77,8 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x1f: break;
 
         case 0x20: break;
-        case 0x21: printf("LXI/tH,$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair HL
-        case 0x22: break;
+        case 0x21: printf("LXI/tH,#$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair HL
+        case 0x22: printf("SHLD/t$%20x%20x", code[2], code[1]); opbytes = 3;    break;//store value of register L at address and value of register H at address + 1
         case 0x23: break;
         case 0x24: break;
         case 0x25: break;
@@ -86,7 +86,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x27: break;
         case 0x28: break;
         case 0x29: break;
-        case 0x2a: break;
+        case 0x2a: printf("LHLD/t$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load value at address to register L and value at address + 1 to register H
         case 0x2b: break;
         case 0x2c: break;
         case 0x2d: break;
@@ -94,8 +94,8 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x2f: break;
 
         case 0x30: break;
-        case 0x31: printf("LXI/tB,$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair SP (Stack pointer)
-        case 0x32: break;
+        case 0x31: printf("LXI/tB,#$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair SP (Stack pointer)
+        case 0x32: printf("STA/t$%20x20x", code[2], code[1]);   opbytes = 3;    break;//store value in register A at address
         case 0x33: break;
         case 0x34: break;
         case 0x35: break;
@@ -103,7 +103,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x37: break;
         case 0x38: break;
         case 0x39: break;
-        case 0x3a: break;
+        case 0x3a: printf("LDA/t$%20x%20x", code[2], code[1]);  opbytes = 3;    break;//load value at address to register A
         case 0x3b: break;
         case 0x3c: break;
         case 0x3d: break;
@@ -291,7 +291,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0xe8: break;
         case 0xe9: break;
         case 0xea: break;
-        case 0xeb: break;
+        case 0xeb: printf("XCHG");  break;//contents in register pair HL are swapped with register pair DE
         case 0xec: break;
         case 0xed: break;
         case 0xee: break;
