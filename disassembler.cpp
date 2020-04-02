@@ -106,70 +106,70 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x3d: break;
         case 0x3e: break;
         case 0x3f: break;
-        case 0x40: break;
-        case 0x41: break;
-        case 0x42: break;
-        case 0x43: break;
-        case 0x44: break;
-        case 0x45: break;
-        case 0x46: break;
-        case 0x47: break;
-        case 0x48: break;
-        case 0x49: break;
-        case 0x4a: break;
-        case 0x4b: break;
-        case 0x4c: break;
-        case 0x4d: break;
-        case 0x4e: break;
-        case 0x4f: break;
-        case 0x50: break;
-        case 0x51: break;
-        case 0x52: break;
-        case 0x53: break;
-        case 0x54: break;
-        case 0x55: break;
-        case 0x56: break;
-        case 0x57: break;
-        case 0x58: break;
-        case 0x59: break;
-        case 0x5a: break;
-        case 0x5b: break;
-        case 0x5c: break;
-        case 0x5d: break;
-        case 0x5e: break;
-        case 0x5f: break;
-        case 0x60: break;
-        case 0x61: break;
-        case 0x62: break;
-        case 0x63: break;
-        case 0x64: break;
-        case 0x65: break;
-        case 0x66: break;
-        case 0x67: break;
-        case 0x68: break;
-        case 0x69: break;
-        case 0x6a: break;
-        case 0x6b: break;
-        case 0x6c: break;
-        case 0x6d: break;
-        case 0x6e: break;
-        case 0x6f: break;
-        case 0x70: break;
-        case 0x71: break;
-        case 0x72: break;
-        case 0x73: break;
-        case 0x74: break;
-        case 0x75: break;
+        case 0x40: printf("MOV/tB,B");    break; //move register B to register B
+        case 0x41: printf("MOV/tB,C");    break; //move register C to register B
+        case 0x42: printf("MOV/tB,D");    break; //move register D to register B
+        case 0x43: printf("MOV/tB,E");    break; //move register E to register B
+        case 0x44: printf("MOV/tB,H");    break; //move register H to register B
+        case 0x45: printf("MOV/tB,L");    break; //move register L to register B
+        case 0x46: printf("MOV/tB,M");    break; //move memory location (H)(L) to register B
+        case 0x47: printf("MOV/tB,A");    break; //move register A to register B
+        case 0x48: printf("MOV/tC,B");    break; //move register B to register C
+        case 0x49: printf("MOV/tC,C");    break; //move register C to register C
+        case 0x4a: printf("MOV/tC,D");    break; //move register D to register C
+        case 0x4b: printf("MOV/tC,E");    break; //move register E to register C
+        case 0x4c: printf("MOV/tC,H");    break; //move register H to register C
+        case 0x4d: printf("MOV/tC,L");    break; //move register L to register C
+        case 0x4e: printf("MOV/tC,M");    break; //move memory location (H)(L) to register C
+        case 0x4f: printf("MOV/tC,A");    break; //move register A to register C
+        case 0x50: printf("MOV/tD,B");    break; //move register B to register D
+        case 0x51: printf("MOV/tD,C");    break; //move register C to register D
+        case 0x52: printf("MOV/tD,D");    break; //move register D to register D
+        case 0x53: printf("MOV/tD,E");    break; //move register E to register D
+        case 0x54: printf("MOV/tD,H");    break; //move register H to register D
+        case 0x55: printf("MOV/tD,L");    break; //move register L to register D
+        case 0x56: printf("MOV/tD,M");    break; //move memory location (H)(L) to register D
+        case 0x57: printf("MOV/tD,A");    break; //move register A to register D
+        case 0x58: printf("MOV/tE,B");    break; //move register B to register E
+        case 0x59: printf("MOV/tE,C");    break; //move register C to register E
+        case 0x5a: printf("MOV/tE,D");    break; //move register D to register E
+        case 0x5b: printf("MOV/tE,E");    break; //move register E to register E
+        case 0x5c: printf("MOV/tE,H");    break; //move register H to register E
+        case 0x5d: printf("MOV/tE,L");    break; //move register L to register E
+        case 0x5e: printf("MOV/tE,M");    break; //move memory location (H)(L) to register E
+        case 0x5f: printf("MOV/tE,A");    break; //move register A to register E
+        case 0x60: printf("MOV/tH,B");    break; //move register B to register H
+        case 0x61: printf("MOV/tH,C");    break; //move register C to register H
+        case 0x62: printf("MOV/tH,D");    break; //move register D to register H
+        case 0x63: printf("MOV/tH,E");    break; //move register E to register H
+        case 0x64: printf("MOV/tH,H");    break; //move register H to register H
+        case 0x65: printf("MOV/tH,L");    break; //move register L to register H
+        case 0x66: printf("MOV/tH,M");    break; //move memory location (H)(L) to register H
+        case 0x67: printf("MOV/tH,A");    break; //move register A to register H
+        case 0x68: printf("MOV/tL,B");    break; //move register B to register L
+        case 0x69: printf("MOV/tL,C");    break; //move register C to register L
+        case 0x6a: printf("MOV/tL,D");    break; //move register D to register L
+        case 0x6b: printf("MOV/tL,E");    break; //move register E to register L
+        case 0x6c: printf("MOV/tL,H");    break; //move register H to register L
+        case 0x6d: printf("MOV/tL,L");    break; //move register L to register L
+        case 0x6e: printf("MOV/tL,M");    break; //move memory location (H)(L) to register L
+        case 0x6f: printf("MOV/tL,A");    break; //move register A to register L
+        case 0x70: printf("MOV/tM,B");    break; //move register B to memory location at (H)(L)
+        case 0x71: printf("MOV/tM,C");    break; //move register C to memory location at (H)(L)
+        case 0x72: printf("MOV/tM,D");    break; //move register D to memory location at (H)(L)
+        case 0x73: printf("MOV/tM,E");    break; //move register E to memory location at (H)(L)
+        case 0x74: printf("MOV/tM,H");    break; //move register H to memory location at (H)(L)
+        case 0x75: printf("MOV/tM,L");    break; //move register L to memory location at (H)(L)
         case 0x76: break;
-        case 0x77: break;
-        case 0x78: break;
-        case 0x79: break;
-        case 0x7a: break;
-        case 0x7b: break;
-        case 0x7c: break;
-        case 0x7d: break;
-        case 0x7e: break;
-        case 0x7f: break;
+        case 0x77: printf("MOV/tM,A");    break; //move register A to memory location at (H)(L)
+        case 0x78: printf("MOV/tA,B");    break; //move register B to register A
+        case 0x79: printf("MOV/tA,C");    break; //move register C to register A
+        case 0x7a: printf("MOV/tA,D");    break; //move register D to register A
+        case 0x7b: printf("MOV/tA,E");    break; //move register E to register A
+        case 0x7c: printf("MOV/tA,H");    break; //move register H to register A
+        case 0x7d: printf("MOV/tA,L");    break; //move register L to register A
+        case 0x7e: printf("MOV/tA,M");    break; //move memory location (H)(L) to register A
+        case 0x7f: printf("MOV/tA,A");    break; //move register A to register A
         case 0x80: break;
         case 0x81: break;
         case 0x82: break;
