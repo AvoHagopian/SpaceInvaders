@@ -246,73 +246,73 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0xbe: printf("CMP/tM");    break;//subtract data at memory location (H)(L) from register A Z FLAG SET TO 1 IF A = M AND CARRY FLAG IS SET TO 1 IF A < M
         case 0xbf: printf("CMP/tA");    break;//subtract register A from register A Z FLAG SET TO 1 IF A = A AND CARRY FLAG IS SET TO 1 IF A < A
 
-        case 0xc0: break;
+        case 0xc0: printf("RNZ/t$%02x%02x", code[2], code[1]);    opbytes = 3;  break;//bruh if zero flag is 0
         case 0xc1: break;
-        case 0xc2: break;
-        case 0xc3: printf("JMP/t$%02x%02x", code[2], code[1]);    opbytes = 3;   break; //jump unconditional
-        case 0xc4: break;
+        case 0xc2: printf("JNZ/t$%20x%20x", code[2], code[1]);  opbytes = 3;    break;//jump to address if zero flag is 0
+        case 0xc3: printf("JMP/t$%02x%02x", code[2], code[1]);    opbytes = 3;  break;//jump unconditional
+        case 0xc4: printf("CNZ/t$%02x%02x", code[2], code[1]);    opbytes = 3;  break;//bruh if zero flag is 0
         case 0xc5: break;
         case 0xc6: printf("ADI/t#$%20x", code[1]);  opbytes = 2;    break;//add data value to register A
-        case 0xc7: break;
-        case 0xc8: break;
-        case 0xc9: break;
-        case 0xca: break;
+        case 0xc7: printf("RST/t0");    break;//call instruction at address $00
+        case 0xc8: printf("RZ/t$%20x%20x", code[2], code[1]);   opbytes = 3;    break;//bruh if zero flag is 1
+        case 0xc9: printf("RET");   break;//bruh
+        case 0xca: printf("JZ/t$%20x%20x", code[2], code[1]);   opbytes = 3;    break;//jump to address if zero flag is 1
         case 0xcb: break;
-        case 0xcc: break;
-        case 0xcd: break;
+        case 0xcc: printf("CZ/t$%20x%20x", code[2], code[1]);   opbytes = 3;    break;//bruh if zero flag is 1
+        case 0xcd: printf("CALL/t$%20x%20x", code[2], code[1]); opbytes = 3;    break;//bruh
         case 0xce: printf("ACI/t#$%20x", code[1]);  opbytes = 2;    break;//add data value and carry bit to register A
-        case 0xcf: break;
+        case 0xcf: printf("RST/t1");    break;//call instruction at address $08
 
-        case 0xd0: break;
+        case 0xd0: printf("RNC/t$%20x%20x", code[2], code[1]);  opbytes = 3;    break;//bruh if carry flag is 0
         case 0xd1: break;
-        case 0xd2: break;
+        case 0xd2: printf("JNC/t$%20x%20x", code[2], code[1]);  opbytes = 3;    break;//jump to address if carry flag is 0
         case 0xd3: break;
-        case 0xd4: break;
+        case 0xd4: printf("CNC/t$%20x%20x", code[2], code[1]);  opbytes = 3;    break;//bruh if carry flag is 0
         case 0xd5: break;
         case 0xd6: printf("SUI/t#$%20x", code[1]);  opbytes = 2;    break;//subtract data value from register A
-        case 0xd7: break;
-        case 0xd8: break;
+        case 0xd7: printf("RST/t2");    break;//call instruction at address $10
+        case 0xd8: printf("RC/t$%20x%20x", code[2], code[1]);   opbytes = 3;    break;//bruh if carry flag is 1
         case 0xd9: break;
-        case 0xda: break;
+        case 0xda: printf("JC/t$%20x%20x", code[2], code[1]);   opbytes = 3;    break;//jump to address if carry flag is 1
         case 0xdb: break;
-        case 0xdc: break;
+        case 0xdc: printf("CC/t$%20x%20x", code[2], code[1]);   opbytes = 3;    break;//bruh if carry flag is 1
         case 0xdd: break;
         case 0xde: printf("SBI/t#$%20x", code[1]);  opbytes = 2;    break;//subtract data value and carry bit from register A
-        case 0xdf: break;
+        case 0xdf: printf("RST/t3");    break;//call instruction at address $18
 
-        case 0xe0: break;
+        case 0xe0: printf("RPO/t$%20x%20x", code[2], code[1]);  opbytes = 3;    break;//bruh if parity flag is 0
         case 0xe1: break;
-        case 0xe2: break;
+        case 0xe2: printf("JPO/t$%20x%20x", code[2], code[1]);  opbytes = 3;    break;//jump to address if parity flag is 0
         case 0xe3: break;
-        case 0xe4: break;
+        case 0xe4: printf("CPO/t$%20x%20x", code[2], code[1]);  opbytes = 3;    break;//bruh if parity flag is 0
         case 0xe5: break;
         case 0xe6: printf("ANI/t#$%20x", code[1]);  opbytes = 2;    break;//AND data with register A AUXILARY CARRY AND CARRY FLAG ARE CLEARED
-        case 0xe7: break;
-        case 0xe8: break;
-        case 0xe9: break;
-        case 0xea: break;
+        case 0xe7: printf("RST/t4");    break;//call instruction at address $20
+        case 0xe8: printf("RPE/t$%20x%20x", code[2], code[1]);  opbytes = 3;    break;//bruh if parity flag is 1
+        case 0xe9: printf("PCHL");  break;//set program counter to register pair HL (jump to HL)
+        case 0xea: printf("JPE/t$%20x%20x", code[2], code[1]);  opbytes = 3;    break;//jump to address if parity flag is 1
         case 0xeb: printf("XCHG");  break;//contents in register pair HL are swapped with register pair DE
-        case 0xec: break;
+        case 0xec: printf("CPE/t$%20x%20x", code[2], code[1]);  opbytes = 3;    break;//bruh if parity flag is 1
         case 0xed: break;
         case 0xee: printf("XRI/t#$%20x", code[1]);  opbytes = 2;    break;//exclusive OR data with register A AUXILARY CARRY AND CARRY FLAG ARE CLEARED
-        case 0xef: break;
+        case 0xef: printf("RST/t5");    break;//call instruction at address $28
         
-        case 0xf0: break;
+        case 0xf0: printf("RP/t$%20x%20x", code[2], code[1]);   opbytes = 3;    break;//bruh if sign flag is 0
         case 0xf1: break;
-        case 0xf2: break;
+        case 0xf2: printf("JP/t$%20x%20x", code[2], code[1]);   opbytes = 3;    break;//jump to address if sign flag is 0
         case 0xf3: break;
-        case 0xf4: break;
+        case 0xf4: printf("CP/t$%20x%20x", code[2], code[1]);   opbytes = 3;    break;//bruh if sign flag is 0
         case 0xf5: break;
         case 0xf6: printf("ORI/t#$%20x", code[1]);  opbytes = 2;    break;//inclusive OR data with register A AUXILARY CARRY AND CARRY FLAG ARE CLEARED
-        case 0xf7: break;
-        case 0xf8: break;
+        case 0xf7: printf("RST/t6");    break;//call instruction at address $30
+        case 0xf8: printf("RM/t$%20x%20x", code[2], code[1]);   opbytes = 3;    break;//bruh if sign flag is 1
         case 0xf9: break;
-        case 0xfa: break;
+        case 0xfa: printf("JM/t$%20x%20x", code[2], code[1]);   opbytes = 3;    break;//jump to address if sign flag is 1
         case 0xfb: break;
-        case 0xfc: break;
+        case 0xfc: printf("CM/t$%20x%20x", code[2], code[1]);   opbytes = 3;    break;//bruh if sign flag is 1
         case 0xfd: break;
         case 0xfe: printf("CPI/t#$%20x", code[1]);  opbytes = 2;    break;//subtract data from register A Z FLAG SET TO 1 IF A = data AND CARRY FLAG IS SET TO 1 IF A < data
-        case 0xff: break;
+        case 0xff: printf("RST/t7");    break;//call instruction at address $38
         default:
     }
     cout << '/n';
