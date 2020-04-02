@@ -48,7 +48,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x03: break;
         case 0x04: break;
         case 0x05: break;
-        case 0x06: break;
+        case 0x06: printf("MVI/tB,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register B
         case 0x07: break;
         case 0x08: break;
         case 0x09: break;
@@ -56,15 +56,16 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x0b: break;
         case 0x0c: break;
         case 0x0d: break;
-        case 0x0e: break;
+        case 0x0e: printf("MVI/tC,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register C
         case 0x0f: break;
+
         case 0x10: break;
         case 0x11: break;
         case 0x12: break;
         case 0x13: break;
         case 0x14: break;
         case 0x15: break;
-        case 0x16: break;
+        case 0x16: printf("MVI/tD,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register D
         case 0x17: break;
         case 0x18: break;
         case 0x19: break;
@@ -72,15 +73,16 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x1b: break;
         case 0x1c: break;
         case 0x1d: break;
-        case 0x1e: break;
+        case 0x1e: printf("MVI/tE,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register E
         case 0x1f: break;
+
         case 0x20: break;
         case 0x21: break;
         case 0x22: break;
         case 0x23: break;
         case 0x24: break;
         case 0x25: break;
-        case 0x26: break;
+        case 0x26: printf("MVI/tH,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register H
         case 0x27: break;
         case 0x28: break;
         case 0x29: break;
@@ -88,15 +90,16 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x2b: break;
         case 0x2c: break;
         case 0x2d: break;
-        case 0x2e: break;
+        case 0x2e: printf("MVI/tL,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register L
         case 0x2f: break;
+
         case 0x30: break;
         case 0x31: break;
         case 0x32: break;
         case 0x33: break;
         case 0x34: break;
         case 0x35: break;
-        case 0x36: break;
+        case 0x36: printf("MVI/tM,#$%02x", code[1]);  opbytes = 2;    break;//move data value to memory location (H)(L)
         case 0x37: break;
         case 0x38: break;
         case 0x39: break;
@@ -104,8 +107,9 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x3b: break;
         case 0x3c: break;
         case 0x3d: break;
-        case 0x3e: break;
+        case 0x3e: printf("MVI/tA,#$%02x", code[1]);  opbytes = 2;    break;//move data value to register A
         case 0x3f: break;
+
         case 0x40: printf("MOV/tB,B");    break; //move register B to register B
         case 0x41: printf("MOV/tB,C");    break; //move register C to register B
         case 0x42: printf("MOV/tB,D");    break; //move register D to register B
@@ -122,6 +126,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x4d: printf("MOV/tC,L");    break; //move register L to register C
         case 0x4e: printf("MOV/tC,M");    break; //move memory location (H)(L) to register C
         case 0x4f: printf("MOV/tC,A");    break; //move register A to register C
+
         case 0x50: printf("MOV/tD,B");    break; //move register B to register D
         case 0x51: printf("MOV/tD,C");    break; //move register C to register D
         case 0x52: printf("MOV/tD,D");    break; //move register D to register D
@@ -138,6 +143,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x5d: printf("MOV/tE,L");    break; //move register L to register E
         case 0x5e: printf("MOV/tE,M");    break; //move memory location (H)(L) to register E
         case 0x5f: printf("MOV/tE,A");    break; //move register A to register E
+
         case 0x60: printf("MOV/tH,B");    break; //move register B to register H
         case 0x61: printf("MOV/tH,C");    break; //move register C to register H
         case 0x62: printf("MOV/tH,D");    break; //move register D to register H
@@ -154,13 +160,14 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x6d: printf("MOV/tL,L");    break; //move register L to register L
         case 0x6e: printf("MOV/tL,M");    break; //move memory location (H)(L) to register L
         case 0x6f: printf("MOV/tL,A");    break; //move register A to register L
+
         case 0x70: printf("MOV/tM,B");    break; //move register B to memory location at (H)(L)
         case 0x71: printf("MOV/tM,C");    break; //move register C to memory location at (H)(L)
         case 0x72: printf("MOV/tM,D");    break; //move register D to memory location at (H)(L)
         case 0x73: printf("MOV/tM,E");    break; //move register E to memory location at (H)(L)
         case 0x74: printf("MOV/tM,H");    break; //move register H to memory location at (H)(L)
         case 0x75: printf("MOV/tM,L");    break; //move register L to memory location at (H)(L)
-        case 0x76: break;
+        case 0x76: printf("HLT");         break; //processors stops and program is halted
         case 0x77: printf("MOV/tM,A");    break; //move register A to memory location at (H)(L)
         case 0x78: printf("MOV/tA,B");    break; //move register B to register A
         case 0x79: printf("MOV/tA,C");    break; //move register C to register A
@@ -170,6 +177,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x7d: printf("MOV/tA,L");    break; //move register L to register A
         case 0x7e: printf("MOV/tA,M");    break; //move memory location (H)(L) to register A
         case 0x7f: printf("MOV/tA,A");    break; //move register A to register A
+
         case 0x80: break;
         case 0x81: break;
         case 0x82: break;
@@ -186,6 +194,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x8d: break;
         case 0x8e: break;
         case 0x8f: break;
+
         case 0x90: break;
         case 0x91: break;
         case 0x92: break;
@@ -202,6 +211,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x9d: break;
         case 0x9e: break;
         case 0x9f: break;
+
         case 0xa0: break;
         case 0xa1: break;
         case 0xa2: break;
@@ -218,6 +228,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0xad: break;
         case 0xae: break;
         case 0xaf: break;
+
         case 0xb0: break;
         case 0xb1: break;
         case 0xb2: break;
@@ -234,6 +245,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0xbd: break;
         case 0xbe: break;
         case 0xbf: break;
+
         case 0xc0: break;
         case 0xc1: break;
         case 0xc2: break;
@@ -250,6 +262,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0xcd: break;
         case 0xce: break;
         case 0xcf: break;
+
         case 0xd0: break;
         case 0xd1: break;
         case 0xd2: break;
@@ -266,6 +279,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0xdd: break;
         case 0xde: break;
         case 0xdf: break;
+
         case 0xe0: break;
         case 0xe1: break;
         case 0xe2: break;
@@ -282,6 +296,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0xed: break;
         case 0xee: break;
         case 0xef: break;
+        
         case 0xf0: break;
         case 0xf1: break;
         case 0xf2: break;
