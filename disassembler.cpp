@@ -178,22 +178,22 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x7e: printf("MOV/tA,M");    break; //move memory location (H)(L) to register A
         case 0x7f: printf("MOV/tA,A");    break; //move register A to register A
 
-        case 0x80: break;
-        case 0x81: break;
-        case 0x82: break;
-        case 0x83: break;
-        case 0x84: break;
-        case 0x85: break;
-        case 0x86: break;
-        case 0x87: break;
-        case 0x88: break;
-        case 0x89: break;
-        case 0x8a: break;
-        case 0x8b: break;
-        case 0x8c: break;
-        case 0x8d: break;
-        case 0x8e: break;
-        case 0x8f: break;
+        case 0x80: printf("ADD/tB");    break;//add contents of register B to register A
+        case 0x81: printf("ADD/tC");    break;//add contents of register C to register A
+        case 0x82: printf("ADD/tD");    break;//add contents of register D to register A
+        case 0x83: printf("ADD/tE");    break;//add contents of register E to register A
+        case 0x84: printf("ADD/tH");    break;//add contents of register H to register A
+        case 0x85: printf("ADD/tL");    break;//add contents of register L to register A
+        case 0x86: printf("ADD/tM");    break;//add contents of memory location at (H)(L) to register A
+        case 0x87: printf("ADD/tA");    break;//add contents of register A to register A
+        case 0x88: printf("ADC/tB");    break;//add contents of register B and carry bit to register A
+        case 0x89: printf("ADC/tC");    break;//add contents of register C and carry bit to register A
+        case 0x8a: printf("ADC/tD");    break;//add contents of register D and carry bit to register A
+        case 0x8b: printf("ADC/tE");    break;//add contents of register E and carry bit to register A
+        case 0x8c: printf("ADC/tH");    break;//add contents of register H and carry bit to register A
+        case 0x8d: printf("ADC/tL");    break;//add contents of register L and carry bit to register A
+        case 0x8e: printf("ADC/tM");    break;//add contents of memory location (H)(L) and carry bit to register A
+        case 0x8f: printf("ADC/tA");    break;//add contents of register A and carry bit to register A
 
         case 0x90: break;
         case 0x91: break;
@@ -252,7 +252,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0xc3: printf("JMP/t$%02x%02x", code[2], code[1]);    opbytes = 3;   break; //jump unconditional
         case 0xc4: break;
         case 0xc5: break;
-        case 0xc6: break;
+        case 0xc6: printf("ADI/t#$%20x", code[1]);  opbytes = 2;    break;//add data value to register A
         case 0xc7: break;
         case 0xc8: break;
         case 0xc9: break;
@@ -260,7 +260,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0xcb: break;
         case 0xcc: break;
         case 0xcd: break;
-        case 0xce: break;
+        case 0xce: printf("ACI/t#$%20x", code[1]);  opbytes = 2;    break;//add data value and carry bit to register A
         case 0xcf: break;
 
         case 0xd0: break;
