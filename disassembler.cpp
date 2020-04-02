@@ -43,7 +43,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
     switch(*code)
     {
         case 0x00: break;
-        case 0x01: break;
+        case 0x01: printf("LXI/tB,$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair BC
         case 0x02: break;
         case 0x03: break;
         case 0x04: break;
@@ -60,7 +60,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x0f: break;
 
         case 0x10: break;
-        case 0x11: break;
+        case 0x11: printf("LXI/tD,$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair DE
         case 0x12: break;
         case 0x13: break;
         case 0x14: break;
@@ -77,7 +77,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x1f: break;
 
         case 0x20: break;
-        case 0x21: break;
+        case 0x21: printf("LXI/tH,$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair HL
         case 0x22: break;
         case 0x23: break;
         case 0x24: break;
@@ -94,7 +94,7 @@ int Disassemble8080Op(char* characterBuffer, int pc)
         case 0x2f: break;
 
         case 0x30: break;
-        case 0x31: break;
+        case 0x31: printf("LXI/tB,$%20x%20x", code[2], code[1]);    opbytes = 3;    break;//load data into register pair SP (Stack pointer)
         case 0x32: break;
         case 0x33: break;
         case 0x34: break;
