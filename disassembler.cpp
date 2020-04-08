@@ -13,7 +13,6 @@ int main(int argc, char* argv[])
     {    
         printf("error: Couldn't open %s\n", argv[1]);
         exit(1);
-        
     }
       
     fseek(f, 0L, SEEK_END);
